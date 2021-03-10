@@ -1,0 +1,50 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Вопросы психологу | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    {% for i in quest %}
+    <div class="quest border m-2 p-4" style="border-radius:10px" onclick="toggle({{ i.id }})">
+        <div class="d-flex justify-content-between">
+            <div class="px-3" style="border-radius:10px; background-color:red">Вопрос от {{ i.name }}</div>
+            <div class="px-3  text-right" style="border-radius:10px; background-color:blue;">{{ i.date|date:'d-m-Y' }}
+            </div>
+        </div>
+        <p class="mt-3">
+            {{ i.quest }}
+        </p>
+        <div class="quest-Move" id="{{ i.id }}">
+            <div style="height: 1px; background-color: black"></div>
+            <p class="mt-4">
+                {{ i.response }}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <form action="" method="post" class="mt-5">
+        {% csrf_token %}
+        <h3>Задайте свой впрос</h3>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">{{ form.name.label }}</span>
+            </div>
+            {{ form.name }}
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">{{ form.email.label }}</span>
+            </div>
+            {{ form.email }}
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">{{ form.quest.label }}</span>
+            </div>
+            {{ form.quest }}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Отправить">
+    </form>
+</div>
+{% endblock %}

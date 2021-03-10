@@ -1,0 +1,45 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Новая статья | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-2">
+        <h3>Добавление блоков</h3>
+        <div>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('i')"><i>Курсив</i></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag()">Заголовки разных уровней</button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('u')"><u>Подчеркивание</u></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('tt')"><tt>Моноширинный текст</tt></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('strong')"><strong>Жирный шрифт</strong></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('q')"><q>Цитата</q></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('address')"><address>Информация о авторе</address></button>
+            <button class="m-2 btn btn-dark" type="button" onclick="add_tag('abbr')"><abbr title="Common Gateway Interface, общий шлюзовый интерфейс">Абривиатура</abbr></button>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Введите статью</h3>
+                    <textarea rows="10" style="width:100%" id="text"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Как будет отображаться</h3>
+                    <div id="result" style="word-wrap:break-word;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).keyup(function(e) {
+        if (e.key == 'Enter') {
+            document.getElementById('text').value += '<br />';
+        }
+	    $('#result').hide().html(document.getElementById('text').value).fadeIn('fast');
+    })
+</script>
+{% endblock %}

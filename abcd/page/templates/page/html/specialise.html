@@ -1,0 +1,34 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Специалисты | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container mt-2">
+    <div class="row">
+        {% for i in spec %}
+        <div class="col-sm-3 border m-2" style="border-radius: 10px" data-toggle="modal" data-target="#{{ i.FIO }}">
+            <img src="{{ i.photo.url }}" width="200px" height="250px" class="rounded mx-auto d-block my-3">
+            <p class="text-center">{{ i.FIO }}</p>
+        </div>
+        <div class="modal fade" id="{{ i.FIO }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ i.FIO }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ i.photo.url }}" width="200px" height="250px" class="rounded mx-auto d-block my-3">
+                        <img src="{{ i.certificate.url }}" width="200px" height="250px" class="rounded mx-auto d-block my-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

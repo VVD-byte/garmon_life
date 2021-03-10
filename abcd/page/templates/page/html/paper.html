@@ -1,0 +1,50 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Статьи | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% block content %}
+{% load static %}
+{% block head %}
+<script src="{% static 'js/paper.js' %}"></script>
+{% endblock %}
+{% if user.is_superuser %}
+    <div class="m-3" style="position:absolute; right:0">
+        <button type="button" class="btn btn-primary" onclick="location.href = '{% url 'PaperNew' %}'">Новая запись</button>
+    </div>
+{% endif %}
+
+<div class="row" style="margin-right:0px !important">
+    <div class="col-sm-2 m-4">
+        {% for i in left_menu %}
+            <div class="my-3 px-2" style="background-color:#A1A2A0; width:100%; border-radius: 10px;">
+                {{ i.name }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-sm mt-4">
+        {% for i in data %}
+            <div class="col-sm-6 my-2 border" style="border-radius:10px">
+                <div class="p-2" onclick="location.href = './{{ i.slug }}'">
+                    <h3>{{ i.name }}</h3>
+                    <a>{{ i.small_text }}</a>
+                </div>
+                <div class="d-flex justify-content-between text-center">
+                    <div class="col-sm-auto bg-danger my-2 h-25" style="border-radius:10px">
+                        {{ i.category.name }}
+                    </div>
+                    <div class="col-sm-auto">
+                        <div class="row">
+                            <img class ="my-2" src="{% static 'img/like.svg' %}" width="20" id="{{ i.slug }}">
+                            <img class ="my-2 ml-2" src="{% static 'img/comment.svg' %}" width="20">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-auto m-2 bg-primary h-25" style="border-radius:10px">
+                        {{ i.date|date:'d-m-Y' }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
