@@ -1,0 +1,29 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Авторизация | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% load static %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="m-4">
+            <div class="w-100">{{ form.non_field_errors }}</div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">{{ form.email.label }}</span>
+                </div>
+                {{ form.email }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">{{ form.password.label }}</span>
+                </div>
+                {{ form.password }}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Войти">
+            <a href="{% url 'RegisterPage' %}"><input type="button" class="btn btn-primary" value="Регистрация"></a>
+        </div>
+    </div>
+</form>
+{% endblock %}

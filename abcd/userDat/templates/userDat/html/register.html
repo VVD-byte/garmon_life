@@ -1,0 +1,45 @@
+{% extends 'html/base.html' %}
+{% block title %}
+Регистрация | Психологический центр Гармония Жизни в Миассе
+{% endblock %}
+{% load static %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="m-4">
+            <div class="w-100">{{ form.non_field_errors }}</div>
+            <div class="input-group mb-3">
+                <div class="w-100">{{ form.username.errors }}</div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">{{ form.username.label }}</span>
+                </div>
+                {{ form.username }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="w-100">{{ form.email.errors }}</div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">{{ form.email.label }}</span>
+                </div>
+                {{ form.email }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="w-100">{{ form.password.errors }}</div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">{{ form.password.label }}</span>
+                </div>
+                {{ form.password }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="w-100">{{ form.confirm_password.errors }}</div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon4">{{ form.confirm_password.label }}</span>
+                </div>
+                {{ form.confirm_password }}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Зарегестрироваться">
+            <a href="{% url 'AuthPage' %}"><input type="button" class="btn btn-primary" value="Авторизация"></a>
+        </div>
+    </div>
+</form>
+{% endblock %}
