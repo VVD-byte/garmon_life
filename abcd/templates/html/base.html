@@ -34,21 +34,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/spec">Специалисты</a>
+                <a class="nav-link" href="{% url 'SpecPage' %}">Специалисты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/paper">Статьи</a>
+                <a class="nav-link" href="{% url 'PaperPage' %}">Статьи</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/work">Направления работ</a>
+                <a class="nav-link" href="{% url 'WorkPage' %}">Направления работ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/quest">Вопросы психологу</a>
+                <a class="nav-link" href="{% url 'QuestPage' %}">Вопросы психологу</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Отзывы</a>
             </li>
         </ul>
+        <a href="{% url 'AuthPage' %}">
+            <img class="form-inline my-2 my-lg-0" src="{% static '/img/user.png' %}" width="20">
+        </a>
     </div>
 </nav>
 {% block content %}

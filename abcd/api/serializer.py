@@ -1,9 +1,15 @@
 from rest_framework import serializers
-from page.models import Paper
+from django.apps import apps
+Paper = apps.get_model('page', 'Paper')
 
 
 class LikePaperSerialiser(serializers.ModelSerializer):
+    like = serializers.SerializerMethodField()
 
     class Meta:
         model = Paper
-        fields = '__all__'
+        fields = ('like', )
+
+    def get_like(self, obj):
+        print(obj.like)
+        return 1
